@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .ml11 {
+  font-weight: 700;
+  font-size: 3.5em;
+}
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #fff;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+        #myProgress {
+            margin: auto;
+  width: 80%;
+  background-color: rgb(97, 88, 88);
+  border-radius: 30px;
+}
+
+#myBar {
+    
+  width: 10%;
+  height: 40px;
+  line-height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: rgb(83, 74, 74);
+  border-radius: 30px;
+}
+        body{
+            background-image: url("Background.jpg");
+            color: rgb(201, 193, 185);
+            font-family:century gothic;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+            text-shadow: 5px 5px 5px rgba(61, 51, 201, 0.466) ;
+            font-size: 50px;
+            
+        }
+
+
+  }
+
+
+  }      
+    </style>
+</head>
+<body onload="move()">
+    <h1 style="font-family:cursive">Project</h1>
+    <p></p>
+    
+
+    <div id="myProgress">
+      <div id="myBar">10%</div>
+    </div>
+    
+    <br>
+
+    <h1 class="ml11">
+      <span class="text-wrapper">
+        <span class="line line1"></span>
+        <span class="letters">Ask Me</span>
+      </span>
+    </h1>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>    
+        <p style="    padding: 20px; margin-left: 50px; font-size: 20px;">Our mission is to share and grow the world’s knowledge. <br> We want to connect the people who have knowledge to the people who need it, to bring together people with different perspectives so they can understand each other better, and to empower everyone to share their knowledge for the benefit of the rest of the world. <br> 
+      Simply, we want AskMe to be the platform to voice your opinion/ask any questions.</p>
+</body>
+
+<script>
+    var i = 0;
+    function move() {
+      if (i == 0) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 10;
+        var id = setInterval(frame, 20);
+        function frame() {
+          if (width >= 50) {
+            clearInterval(id);
+            i = 0;
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width  + "%";
+          }
+        }
+      }
+    }
+    
+    // Wrap every letter in a span
+var textWrapper = document.querySelector('.ml11 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml11 .line',
+    scaleY: [0,1],
+    opacity: [0.5,1],
+    easing: "easeOutExpo",
+    duration: 700
+  })
+  .add({
+    targets: '.ml11 .line',
+    translateX: [0, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+    easing: "easeOutExpo",
+    duration: 700,
+    delay: 100
+  }).add({
+    targets: '.ml11 .letter',
+    opacity: [0,1],
+    easing: "easeOutExpo",
+    duration: 600,
+    offset: '-=775',
+    delay: (el, i) => 34 * (i+1)
+  }).add({
+    targets: '.ml11',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+    </script>
+
+</html>
